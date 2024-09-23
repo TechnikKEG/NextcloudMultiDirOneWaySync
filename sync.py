@@ -66,6 +66,11 @@ def main(
         ),
     ] = None,
 ):
+    # Remove trailing slash from local path to "normalize" it
+    # This normalization is depended on in the code
+    if local_path[-1] == "/":
+        local_path = local_path[:-1]
+
     load_dotenv()
 
     nextcloud_user = getenv_with_error("NEXTCLOUD_USER")
